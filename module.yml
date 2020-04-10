@@ -67,6 +67,12 @@ Parameters:
     Description: 'The HTTP GET request is sent to this path. The response status code must be in the range 200-399 for healthy containers.'
     Type: String
     Default: '/'
+  TargetPort:
+    Description: 'The port to be used by the target group'
+    Type: Number
+    Default: 8080
+    MinValue: 1
+    MaxValue: 49150
 Conditions:
   HasAlertingModule: !Not [!Equals [!Ref AlertingModule, '']]
   HasCognitoUserPoolModule: !Not [!Equals [!Ref CognitoUserPoolModule, '']]
@@ -127,7 +133,7 @@ Resources:
       UnhealthyThresholdCount: 2
       Matcher:
         HttpCode: '200-399'
-      Port: 8080 # overriden when containers are attached
+      Port: !Ref TargetPort
       Protocol: HTTP
       TargetType: ip
       TargetGroupAttributes:
