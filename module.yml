@@ -193,7 +193,7 @@ Resources:
   DefaultVPCSecurityGroupUpdate:
     Type: AWS::EC2::SecurityGroupIngress
     Properties:
-      GroupId: !Join
+      GroupId: !GetAtt !Join
         - "."
         - - !Ref VpcModule
           - DefaultSecurityGroup
