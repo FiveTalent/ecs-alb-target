@@ -190,17 +190,7 @@ Resources:
         FromPort: 0
         ToPort: 65535
         IpProtocol: tcp
-  DefaultVPCSecurityGroupUpdate:
-    Type: AWS::EC2::SecurityGroupIngress
-    Properties:
-      GroupId: !GetAtt !Join
-        - "."
-        - - !Ref VpcModule
-          - DefaultSecurityGroup
-      SourceSecurityGroupId: !Ref SecurityGroup
-      IpProtocol: -1
-      FromPort: -1
-      ToPort: -1
+
 Outputs:
   ModuleId:
     Value: 'ecs-alb-target'
